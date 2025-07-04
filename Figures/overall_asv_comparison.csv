@@ -1,0 +1,4 @@
+"Error_Model","Total_ASVs","Total_Reads","Mean_ASV_Length"
+"Default Loess",1860,782971,1492
+"Custom Loess",1926,781703,1492
+"Binned Quality",1862,782225,1492

@@ -12,6 +12,7 @@ prim <- removePrimers(fn, nop,
                       orient = TRUE,
                       verbose = TRUE)
 
+# === trial and error can skip ===
 # debugging first 
 prim <- removePrimers(fn[1], nop[1], 
                       primer.fwd = F27_kinnex,

@@ -1,3 +1,7 @@
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("dada2")
+
 library(dada2);packageVersion("dada2")
 library(Biostrings);packageVersion("Biostrings")
 library(ShortRead);packageVersion("ShortRead")
@@ -5,7 +9,7 @@ library(ggplot2);packageVersion("ggplot2")
 library(reshape2);packageVersion("reshape2")
 library(RColorBrewer);packageVersion("RColorBrewer")
 
-path <- "/Users/thomasbernabe/Documents/callahan-lab/DATA-ZymoATCCMix-32plex-Revio"
+path <- "/home/tbernab/Documents/callahan-lab/dada2-analysis"
 path.out <- "Figures/"
 path.rds <- "RDS/"
 

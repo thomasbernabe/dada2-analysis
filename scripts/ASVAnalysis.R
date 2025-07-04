@@ -1,7 +1,9 @@
-# 
+library(dplyr)
+library(tidyr)
+
 # run denoising 
 dada_loess <- dada(filt_subsample, err=err_loess, multithread = TRUE)
-dada_custom <- dada(filt_subsample, err=err_custom, multithread = TRUE)
+dada_custom <- dada(filt_subsample_custom, err=err_custom, multithread = TRUE)
 dada_binned <- dada(filt_subsample, err=err_binned, multithread = TRUE)
 
 # create sequence tables 
@@ -85,7 +87,12 @@ all_samples_binned <- count_asvs_per_sample(seqtab_binned, "Binned Quality")
 
 combined_samples <- rbind(all_samples_loess, all_samples_custom, all_samples_binned)
 
-# * under development * reshape for comparison 
+asv_comparison <- combined_samples %>%
+  select(Sample, Error_Model, ASVs) %>%
+  pivot_wider(names_from = Error_Model, values_from = ASVs)
+
+print("ASV Counts per Sample:")
+print(asv_comparison)
 
 # summary statistics 
 summary_stats <- combined_samples %>%
@@ -106,16 +113,16 @@ if(!dir.exists(path.out)) dir.create(path.out)
 # create csv files with stats
 
 # overall comparison
-write.csv(overall_stats, file.path(path.out, "overall_asv_comparison.csv"), row.names = FALSE)
+write.csv(general_stats, file.path(path.out, "overall_asv_comparison.csv"), row.names = FALSE)
 # per sample comparison
 write.csv(asv_comparison, file.path(path.out, "asv_counts_per_sample.csv"), row.names = FALSE)
 # save summary stats
 write.csv(summary_stats, file.path(path.out, "asv_summary_statistics.csv"), row.names = FALSE)
 
 sample_details <- rbind(
-  asvs_loess[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")],
-  asvs_custom[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")],
-  asvs_binned[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")]
+  asv_loess[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")],
+  asv_custom[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")],
+  asv_binned[, c("Error_Model", "ASV_Rank", "ASV_Length", "Read_Count", "Relative_Abundance")]
 )
 
 write.csv(sample_details, 
@@ -125,5 +132,5 @@ write.csv(sample_details,
 print("\n Summary")
 print("Expected for ATCC mock community: ~20 species (ASVs)")
 print(paste("Default Loess found:", general_stats$Total_ASVs[1], "total ASVs"))
-print(paste("Custom GitHub found:", general_stats$Total_ASVs[2], "total ASVs")) 
+print(paste("Custom Loess found:", general_stats$Total_ASVs[2], "total ASVs")) 
 print(paste("Binned Quality found:", general_stats$Total_ASVs[3], "total ASVs"))

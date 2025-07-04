@@ -1,0 +1,4 @@
+"Error_Model","Mean_ASVs_per_Sample","Median_ASVs_per_Sample","Min_ASVs","Max_ASVs","SD_ASVs"
+"Binned Quality",811.2,820.5,709,898,60
+"Custom Loess",792.2,809,677,881,64.1
+"Default Loess",798.8,808,703,885,58.9
