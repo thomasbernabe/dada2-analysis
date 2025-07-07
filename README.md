@@ -5,7 +5,8 @@ This repository contains scripts and results for comparing three different error
 
 ## Dataset Description
 - The PacBio Kinnex dataset is [DATA-ZymoATCCMix-32plex-Revio](https://downloads.pacbcloud.com/public/dataset/Kinnex-16S/DATA-ZymoATCCMix-32plex-Revio/)
-- Download the following ATCC even strain files <img width="296" alt="32-plex barcodes for ATCC" src="https://github.com/user-attachments/assets/86186606-8cab-42df-9116-295940ede1e2" />
+- Download the following ATCC even strain files
+<img width="296" alt="32-plex barcodes for ATCC" src="https://github.com/user-attachments/assets/86186606-8cab-42df-9116-295940ede1e2" />
 
 - Place FASTQ files in data/ directory 
 
