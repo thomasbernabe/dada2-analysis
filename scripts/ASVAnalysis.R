@@ -130,7 +130,6 @@ write.csv(sample_details,
           row.names = FALSE)
 
 print("\n Summary")
-print("Expected for ATCC mock community: ~20 species (ASVs)")
 print(paste("Default Loess found:", general_stats$Total_ASVs[1], "total ASVs"))
 print(paste("Custom Loess found:", general_stats$Total_ASVs[2], "total ASVs")) 
 print(paste("Binned Quality found:", general_stats$Total_ASVs[3], "total ASVs"))
